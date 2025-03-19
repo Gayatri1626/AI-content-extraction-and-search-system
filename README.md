@@ -59,4 +59,4 @@ project is a **multi-functional AI-powered content extraction and search system*
 
 ---
 
-🚀 This project demonstrates your expertise in **AI, NLP, and full-stack development**, making it a powerful solution for **content extraction, analysis, and retrieval**. Let me know if you need detailed documentation or further enhancements! 😊
+🚀 This project demonstrates your expertise in **AI, NLP, and full-stack development**, making it a powerful solution for **content extraction, analysis, and retrieval**.
