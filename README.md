@@ -1,6 +1,6 @@
 ### **AI-Powered Content Extraction and Search System – PDF & YouTube Video Analyzer**  
 
-Your project is a **multi-functional AI-powered content extraction and search system** that handles **both PDF documents and YouTube videos**. It offers **real-time content retrieval, search capabilities, and word analysis**, making it a robust solution for information extraction and retrieval.  
+project is a **multi-functional AI-powered content extraction and search system** that handles **both PDF documents and YouTube videos**. It offers **real-time content retrieval, search capabilities, and word analysis**, making it a robust solution for information extraction and retrieval.  
 
 ---
 
