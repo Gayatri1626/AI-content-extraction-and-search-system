@@ -1,0 +1,200 @@
+YOUTUBE VIDEO TRANSCRIPT ANALYSIS
+================================
+
+Video URL: https://youtu.be/h7LDnVsNRVI?si=0hKbmbE_PIJP2RzN
+Analysis Date: 2024-12-19 12:40:58
+Transcript Language: en (translated)
+
+WORD ANALYSIS
+=============
+
+Word: continuous integration
+----------------------------
+1. **Usage:** Continuous integration is a key part of DevOps and refers to the practice of frequently integrating code changes into a central repository.
+2. **Frequency:** 3
+3. **Key Themes:**
+   - DevOps and the software development lifecycle
+   - Collaboration between development and operations teams
+   - Improving productivity and quality of software releases
+4. **Collocations/Phrases:**
+   - "continuous cycle which is called DevOps"
+   - "This whole stage of build and test is also called continuous integration"
+
+FULL TRANSCRIPT
+===============
+
+Hi everyone I am your Shraddha didi and welcome to our college in today's video we are going to discuss in detail and very easily what is the meaning of the word DAP in technology now whenever we are doing development or  In general, if we are playing with technology, then there are many such terms which we hear in between, one of these terms can be DevOps or DevOps Engineer. Now, on hearing DevOps, the first thing that comes to our mind is whether this is a tool or not.  Is it or is it some software which I have to install and learn and then I can become a devops engineer or is it some concept within programming and if I tell you the summary of the whole thing very easily in advance then it is devops software development  A process or a concept inside it is called the application release process in any company, that is, how a product gets built and reaches the user, a way to do the whole thing, an approach called devops  It has been said that devops is a very broad term and many people give different definitions for it.  But we will try to make sure that by the end of this video, a simple and precise definition or the meaning of this word gets embedded in our minds whenever we talk about product development or application release process.  There are two major departments in any company, one is our development department and the other is our operations department. Now DevOps is called the intersection between our development and operations department. Now both these departments deal with technology. But their work is slightly different. If we talk about the development department, then the work of the development department is to design any product, code it and finally develop it and if we have to judge the performance of the development department, then we  Let's see how many changes they have made, how many new features they have developed, how many old bugs they have fixed and on the other side comes our operations department, the basic work of the operations department is to manage our servers or check our security or  To ensure that scaling and backup are properly implemented within our system and On what basis is the performance checked, that how stable is our system or how available is the system we have built and if the operations department finds any shortcomings, then all those bugs or other issues are given as a feedback to the development department  We are transferring it in the form of a loop. Now, for any product to run well in a company, it is very important that our development and operations department work in collaboration. Now, usually, small scale companies are small scale startups.  There is only one single team in it which is looking after both development and operations, in fact if we make any development, whether it is page development, web development or any other kind of development, then we must have noticed in it That if we are making a single project or we are making a project in a group then usually all the people are looking after all the things but whenever we talk about big corporations in which the size of the tech team becomes bigger like  amazonflex.in is created from which our  The development and one of our departments come in the form of operations. Now as soon as these departments come, we imagine a small scenario that the development team added a new feature in the product and pushed the new changes to Git Hub. New changes came on Git Hub and all those changes will now be pushed directly to the server. Now as soon as it goes to the server, the development team finds out that some issues have come up due to which the code is not running.  Now the development team can say here that the code was running on our machine and this is a proper server problem, so this became an issue of the operations team and the operations team is saying that the servers are running properly.  So if there is any issue in the development part that has come up, then similar issues come up not just once in a company but many times in the development process and to reduce and eradicate such issues, the concept of DevOps came into being. If we talk about this  It is a very recent process that makes our entire application release process less hectic and there are many major benefits of devops because due to devops, the productivity of our teams increases, the speed increases because the lag of the teams decreases.  In the meantime, along with that, collaboration increases, issues get reduced and the additional load on the team also reduces. Along with that, the quality of the product that is released finally becomes much better. If seen overall, the business of any organization increases because now we are able to ship good quality products with more speed and velocity. Now this whole concept of DevOps is a complete process, DevOps engineers are required to implement it.  We use a lot of tools and technologies, one of these tools is our version control which is a part of all our development and operations work, so this is a continuous cycle which is called devops.  This cycle starts with a planning stage in which it is planned what we actually have to build in the product, so all these development parts come into being, after that a product is formed according to the plan we have made  It is coded and then it is built. In simple terms, it is compiled in a certain way and then tests can be run on our application or product. These can be our unit tests or integration tests.  This whole stage of build and test is also called continuous integration. After that we release our product and finally deploy it on the servers. This whole process is called release plus deploy as deployed. After that we operate.  And finally our operations team monitors if there are any changes or any feedback, then that feedback goes back to the development team, so in this way a feedback loop is also created, so this whole This is the process that finally forms our devs  There is a term CI & CD within complete process or complete concept and devops which we hear again and again, so that Continuous Integration Continuous Deploy basically means that by simplifying all these processes or all these steps  I hope that today's video has given us a little more clarity about what devops actually means in terms of software engineering or software development. Apart from this, if you have any doubt related to devops or technology, then you can tell me about it below.  You can tell us by commenting, that's all for today, see you in the next video, till then keep learning and keep exploring
+
+TIMESTAMPED SEGMENTS
+===================
+
+[00:00] Hi everyone I am your Shraddha didi and
+[00:01] welcome to our college in today's video
+[00:03] we are going to discuss in detail and very easily
+[00:07] what is the meaning of the word DAP in technology now whenever we are
+[00:09] doing development or  In general, if
+[00:11] we are playing with technology, then there are
+[00:13] many such terms which we hear in between,
+[00:15] one of these terms can be DevOps or
+[00:18] DevOps Engineer. Now, on
+[00:20] hearing DevOps, the first thing that comes to our mind is whether
+[00:22] this is a tool or not.  Is it or is it some software
+[00:24] which I have to install and learn
+[00:26] and then I can become a devops engineer or is
+[00:28] it some concept within programming
+[00:30] and if I tell you the summary of the whole thing
+[00:33] very easily in advance then it is devops
+[00:35] software development  A process
+[00:38] or a concept inside it is called the
+[00:40] application release process in any company,
+[00:42] that is, how a product gets built
+[00:44] and reaches the user,
+[00:47] a way to do the whole thing, an approach called
+[00:50] devops  It has been said that devops
+[00:52] is a very broad term and many
+[00:54] people give different definitions for it.  But we will
+[00:56] try to make sure that by the end of this video, a
+[00:59] simple and precise definition or the
+[01:02] meaning of this word gets embedded in our minds
+[01:03] whenever we talk about product development
+[01:06] or application release process.  There are
+[01:08] two major
+[01:09] departments in any company,
+[01:11] one is our development
+[01:13] department and the other is our operations
+[01:15] department. Now DevOps is called the intersection between our development and
+[01:19] operations department.
+[01:21] Now both these
+[01:23] departments deal with technology.
+[01:25] But their work is slightly different.
+[01:27] If we talk about the development department, then the
+[01:29] work of the development department is to
+[01:31] design any product,
+[01:33] code it and finally develop it and
+[01:35] if we have to judge the performance of the development department, then
+[01:37] we  Let's see
+[01:38] how many changes they have made, how many
+[01:40] new features they have developed, how many old
+[01:42] bugs they have fixed and on the other side
+[01:44] comes our operations department, the
+[01:47] basic work of the operations department is to
+[01:48] manage our servers or
+[01:50] check our security or  To ensure that
+[01:52] scaling and backup are properly implemented
+[01:54] within our system and
+[01:56] On what basis is the performance checked, that
+[01:58] how stable is our system or how available is the
+[02:00] system we have built and if the operations
+[02:02] department finds any shortcomings, then
+[02:05] all those bugs or other issues are given as
+[02:07] a feedback to the development department  We are
+[02:09] transferring it in the form of a loop.
+[02:11] Now,
+[02:13] for any product to run well in a company, it is very
+[02:15] important that our development and
+[02:17] operations department
+[02:20] work in collaboration. Now, usually, small scale
+[02:22] companies are small scale startups.  There is only
+[02:23] one single team in it
+[02:26] which is looking after both development and operations,
+[02:28] in fact if we make any development,
+[02:30] whether it is page development, web
+[02:31] development or any other kind of
+[02:33] development, then we must have noticed in it
+[02:35] That if we are making a single project
+[02:36] or we are making a project in a group
+[02:38] then usually all the people are
+[02:40] looking after all the things but whenever we
+[02:42] talk about big corporations
+[02:43] in which the size of the tech team becomes bigger
+[02:46] like  amazonflex.in is
+[03:00] created from which our  The development and
+[03:01] one of our departments come in the form of operations.
+[03:03] Now as soon as these departments come,
+[03:06] we imagine a small scenario
+[03:08] that the development team
+[03:10] added a new feature in the product and
+[03:12] pushed the new changes to Git Hub.
+[03:15] New changes came on Git Hub and all those
+[03:17] changes will now be
+[03:19] pushed directly to the server. Now as soon as it goes to the server, the
+[03:21] development team finds out that
+[03:23] some issues have come up due to which the code is
+[03:25] not running.  Now the development team
+[03:27] can say here that the code was running on our machine and
+[03:28] this is a proper server problem,
+[03:30] so this became an issue of the operations team
+[03:33] and the operations team is saying that the servers
+[03:35] are running properly.  So if there
+[03:37] is any issue in the development part that has come up, then
+[03:39] similar issues come up not just once in a company
+[03:41] but many times in the development process
+[03:43] and to reduce and eradicate such issues, the
+[03:47] concept of DevOps came into being.
+[03:50] If we talk about this  It is a very recent process that
+[03:54] makes our entire application release process less hectic and there are many
+[03:56] major benefits of devops because due to devops, the
+[04:00] productivity of our teams increases, the speed increases
+[04:02] because the lag of the
+[04:04] teams decreases.  In the meantime, along with that,
+[04:06] collaboration increases, issues get reduced and the
+[04:08] additional load on the team also
+[04:10] reduces. Along with that, the
+[04:13] quality of the product that is released
+[04:14] finally becomes much better.
+[04:17] If seen overall, the
+[04:18] business of any organization increases
+[04:20] because now we are able to ship good quality
+[04:22] products with more speed and
+[04:24] velocity. Now this
+[04:26] whole concept of DevOps is a complete
+[04:28] process,
+[04:29] DevOps engineers are required to implement it.  We use a lot of tools and
+[04:31] technologies, one of these tools is
+[04:33] our version control which is a
+[04:35] part of
+[04:59] all our development and operations
+[05:02] work, so this is a continuous cycle
+[05:05] which is called devops.  This cycle
+[05:07] starts with a planning stage
+[05:09] in which it is planned
+[05:10] what we actually have to build in the product,
+[05:12] so all these development parts
+[05:14] come into being, after that a product is formed according to the plan we have made  It is
+[05:16] coded and
+[05:18] then it is built.
+[05:20] In simple terms, it is compiled in a certain way and
+[05:22] then
+[05:25] tests can be run on our application or product.
+[05:26] These can be our unit tests or
+[05:28] integration tests.  This
+[05:30] whole stage of build and test is
+[05:32] also called continuous integration.
+[05:35] After that we release our product and
+[05:37] finally deploy it on the servers.
+[05:39] This whole process is
+[05:42] called release plus deploy as deployed. After that
+[05:45] we operate.  And finally our
+[05:47] operations team monitors if there are any
+[05:50] changes or any feedback,
+[05:51] then that feedback goes back to the development
+[05:54] team, so in this way a feedback loop is
+[05:56] also created, so this whole
+[05:58] This is the process that finally forms our
+[06:01] devs  There
+[06:03] is a term CI & CD within complete process or complete concept and devops
+[06:06] which we hear again and again,
+[06:09] so that Continuous Integration Continuous
+[06:11] Deploy basically means that by simplifying
+[06:13] all these processes or all these
+[06:15] steps  I hope that
+[06:18] today's video has given us a little more
+[06:20] clarity about what devops
+[06:22] actually means in terms of software engineering or
+[06:23] software development.
+[06:25] Apart from this, if
+[06:27] you have any doubt related to devops or technology, then
+[06:30] you can tell me about it below.  You
+[06:31] can tell us by commenting, that's all for today,
+[06:33] see you in the next video, till then keep
+[06:34] learning and keep exploring

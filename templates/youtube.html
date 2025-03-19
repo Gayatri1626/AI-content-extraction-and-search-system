@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Content Player</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+  background-color: #f8f9fa;
+  color: #343a40;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Card enhancements */
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  border-bottom: none;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* URL input improvements */
+.url-input {
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.url-input:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+#loadVideo {
+  background-color: #4361ee;
+  border-color: #4361ee;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#loadVideo:hover:not(:disabled) {
+  background-color: #3a56d4;
+  transform: translateY(-1px);
+}
+
+#loadVideo:disabled {
+  background-color: #a0aec0;
+  border-color: #a0aec0;
+}
+
+/* Video container enhancements */
+#videoContainer {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Transcript styling improvements */
+.transcript-container {
+  max-height: 350px;
+}
+
+.transcript-segment {
+  background-color: #f1f5f9;
+  border-left: 3px solid transparent;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.transcript-segment:hover {
+  background-color: #e2e8f0;
+  border-left-color: #4361ee;
+  transform: translateX(3px);
+}
+
+.transcript-segment.active {
+  background-color: #dbeafe;
+  border-left-color: #4361ee;
+}
+
+.transcript-segment small {
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Full content styling improvements */
+.full-content {
+  line-height: 1.8;
+  padding: 1rem;
+  font-size: 1.05rem;
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+}
+
+.segment {
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  margin: 0 0.125rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.segment:hover {
+  background-color: #dbeafe;
+}
+
+/* Word meaning box enhancements */
+#wordMeaningBox {
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border: none;
+  width: 280px;
+  max-width: 90vw;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading overlay improvements */
+.loading-overlay {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 1050;
+}
+
+.loading-text {
+  font-weight: 600;
+  color: #4361ee;
+}
+
+/* Button styling improvements */
+.btn-primary {
+  background-color: #4361ee;
+  border-color: #4361ee;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #3a56d4;
+  border-color: #3a56d4;
+  transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+  color: #4361ee;
+  border-color: #4361ee;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #4361ee;
+  border-color: #4361ee;
+  transform: translateY(-1px);
+}
+
+/* Notes modal improvements */
+.modal-content {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1.25rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #e2e8f0;
+  padding: 1.25rem;
+}
+
+.note-section {
+  background-color: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #4361ee;
+}
+
+/* PDF section improvements */
+#pdfContent {
+  background-color: #ffffff;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.pdf-text-content {
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  padding: 1rem;
+}
+
+#pdfSearchInput {
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+#pdfSearchInput:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+/* Search results styling */
+#pdfSearchResults .card {
+  margin-bottom: 1rem;
+  border-left: 4px solid #4361ee;
+}
+
+#pdfSearchResults mark {
+  background-color: #fef08a;
+  padding: 0.125rem 0;
+  border-radius: 0.125rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 991.98px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+  
+  #videoContainer {
+    margin-bottom: 1rem;
+  }
+  
+  .full-content {
+    height: 350px;
+  }
+}
+
+/* Sticky button container */
+.sticky-top {
+  z-index: 100;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 0.75rem 0;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+/* Additional animations */
+.transcript-segment, .btn, .card {
+  will-change: transform;
+}
+
+#generateNotes:disabled {
+  background-color: #a0aec0;
+  border-color: #a0aec0;
+}
+    </style>
+</head>
+<body>
+    
+    <!-- Updated Video and Transcript Section -->
+<div class="container-fluid py-4">
+    <!-- URL Input Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" 
+                               class="form-control url-input" 
+                               id="videoUrl" 
+                               placeholder="Paste YouTube URL here...">
+                        <button class="btn btn-primary px-4" 
+                                id="loadVideo" disabled>
+                            <i class="bi bi-play-fill"></i> Load Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section with Better Alignment -->
+    <div class="row">
+        <!-- Video and Transcript Column -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white">
+                    <h5 class="card-title mb-0">Video Player</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div id="videoContainer">
+                        <div class="ratio ratio-16x9">
+                            <div id="player"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Video Transcript</h5>
+                </div>
+                <div class="card-body">
+                    <div class="transcript-container" id="transcriptContainer"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full Content Column -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Full Content</h5>
+                    <button class="btn btn-primary" id="generateNotes" disabled>
+                        Generate Notes
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="full-content" id="fullContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Analysis Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="card-title mb-0">PDF Document Analysis</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <p class="mb-0 text-muted">Upload and analyze PDF documents</p>
+                        <div class="btn-group">
+                            <input type="file" id="pdfFile" accept=".pdf" class="d-none">
+                            <button class="btn btn-outline-primary" id="uploadPdfBtn">
+                                <i class="bi bi-upload"></i> Upload PDF
+                            </button>
+                        </div>
+                    </div>
+                    <div id="pdfContent" class="mb-3" style="display: none;">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="pdfSearchInput" placeholder="Search in PDF content...">
+                            <button class="btn btn-primary" id="searchPdfBtn">
+                                <i class="bi bi-search"></i> Search
+                            </button>
+                        </div>
+                        <div id="pdfSearchResults" class="mt-3">
+                            <!-- Search results will be displayed here -->
+                        </div>
+                        <div class="pdf-text-content mt-3" style="max-height: 300px; overflow-y: auto;">
+                            <!-- Extracted PDF text will be displayed here -->
+                        </div>
+                    </div>
+                    <div id="pdfLoadingSpinner" class="text-center" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Processing PDF...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+    <!-- Notes Modal -->
+    <div class="modal fade" id="notesModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Generated Notes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="notesContent">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="copyNotes">Copy Notes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="d-flex align-items-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <span class="loading-text">Processing video content...</span>
+        </div>
+    </div>
+
+    <!-- Word Meaning Box -->
+    <div id="wordMeaningBox" class="card shadow-sm" style="display: none; position: fixed; z-index: 1000; max-width: 300px;">
+        <div class="card-body"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let player;
+        let contentSegments = [];
+        let youtubeApiReady = false;
+
+        // Load YouTube IFrame API
+        function loadYouTubeAPI() {
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            
+            tag.onerror = function() {
+                console.error('Failed to load YouTube IFrame API');
+                alert('Failed to load YouTube player. Please check your internet connection and try again.');
+            };
+            
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        function onYouTubeIframeAPIReady() {
+            youtubeApiReady = true;
+            document.getElementById('loadVideo').disabled = false;
+        }
+
+        function createPlayer(videoId) {
+            if (!youtubeApiReady) {
+                alert('YouTube player is not ready yet. Please try again in a moment.');
+                return;
+            }
+
+            if (player) {
+                player.destroy();
+            }
+
+            try {
+                player = new YT.Player('player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        playsinline: 1
+                    },
+                    events: {
+                        onStateChange: onPlayerStateChange,
+                        onError: onPlayerError
+                    }
+                });
+            } catch (error) {
+                console.error('Error creating player:', error);
+                alert('Error initializing video player. Please try again.');
+            }
+        }
+
+        function onPlayerError(event) {
+            let errorMessage = 'An error occurred with the video player.';
+            switch(event.data) {
+                case 2:
+                    errorMessage = 'Invalid video ID';
+                    break;
+                case 5:
+                    errorMessage = 'HTML5 player error';
+                    break;
+                case 100:
+                    errorMessage = 'Video not found';
+                    break;
+                case 101:
+                case 150:
+                    errorMessage = 'Video playback not allowed';
+                    break;
+            }
+            alert(errorMessage);
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                startContentTracking();
+            } else {
+                stopContentTracking();
+            }
+        }
+
+        let trackingInterval;
+        function startContentTracking() {
+            trackingInterval = setInterval(() => {
+                if (player && player.getCurrentTime) {
+                    const currentTime = player.getCurrentTime();
+                    updateActiveSegment(currentTime);
+                }
+            }, 100);
+        }
+
+        function stopContentTracking() {
+            clearInterval(trackingInterval);
+        }
+
+        let lastActiveIndex = -1; // Keeps track of the last appended segment
+
+        let lastDisplayedIndex = -1; // Tracks the last index appended to Full Content
+
+        function updateActiveSegment(currentTime) {
+    const fullContent = document.getElementById('fullContent');
+
+    contentSegments.forEach((segment, index) => {
+        const nextStart = contentSegments[index + 1]?.start || Infinity;
+
+        if (segment.start <= currentTime && index > lastDisplayedIndex) {
+            const words = segment.text.split(' ');
+            const wordSpans = words.map(word => 
+                `<span class="segment">${word}</span>`
+            ).join(' ');
+            
+            const newContent = document.createElement('span');
+            newContent.id = `content-segment-${index}`;
+            newContent.innerHTML = wordSpans + ' ';
+            fullContent.appendChild(newContent);
+
+            lastDisplayedIndex = index;
+        }
+    });
+
+    if (lastDisplayedIndex !== -1) {
+        const activeElement = document.getElementById(`content-segment-${lastDisplayedIndex}`);
+        activeElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+
+
+        function getVideoId(url) {
+            const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function displayContent(segments) {
+    const transcriptContainer = document.getElementById('transcriptContainer');
+    const fullContent = document.getElementById('fullContent');
+    const generateNotesBtn = document.getElementById('generateNotes');
+    
+    // Clear containers
+    transcriptContainer.innerHTML = '';
+    fullContent.innerHTML = '';
+    
+    // Add sticky generate notes button at the top of full content
+    const stickyButtonContainer = document.createElement('div');
+    stickyButtonContainer.className = 'sticky-top bg-white py-2 mb-3 border-bottom';
+    stickyButtonContainer.style.zIndex = '1';
+    
+    const generateButton = document.createElement('button');
+    generateButton.className = 'btn btn-primary';
+    generateButton.innerHTML = '<i class="bi bi-file-text"></i> Generate Notes from Content';
+    generateButton.onclick = async () => {
+        const content = fullContent.innerText.replace(generateButton.innerText, '').trim();
+        if (!content || content.trim().length === 0) {
+            alert('No content available to generate notes from. Please wait for the video to load completely.');
+            return;
+        }
+        await generateNotes();
+    };
+    
+    stickyButtonContainer.appendChild(generateButton);
+    fullContent.appendChild(stickyButtonContainer);
+    
+    // Only enable the main generate notes button if we have content
+    generateNotesBtn.disabled = segments.length === 0;
+
+    // Filter segments to show 1-minute intervals
+    const filteredSegments = [];
+    let lastTime = -60;
+
+    segments.forEach(segment => {
+        if (segment.start >= lastTime + 60) {
+            filteredSegments.push(segment);
+            lastTime = segment.start;
+        }
+    });
+
+    // Display filtered transcript segments
+    filteredSegments.forEach((segment, index) => {
+        const div = document.createElement('div');
+        div.id = `segment-${index}`;
+        div.className = 'transcript-segment';
+        div.innerHTML = `
+            <small class="text-muted">${formatTime(segment.start)}</small>
+            <p class="mb-0">${segment.text}</p>
+        `;
+        div.onclick = () => {
+            if (player && player.seekTo) {
+                player.seekTo(segment.start);
+                player.playVideo();
+            }
+        };
+        transcriptContainer.appendChild(div);
+    });
+
+    // Create content container for segments
+    const contentContainer = document.createElement('div');
+    contentContainer.className = 'content-segments';
+    fullContent.appendChild(contentContainer);
+
+    // Add error handling for generate notes
+    generateNotesBtn.addEventListener('click', async () => {
+        const content = contentContainer.innerText;
+        if (!content || content.trim().length === 0) {
+            alert('No content available to generate notes from. Please wait for the video to load completely.');
+            return;
+        }
+        await generateNotes();
+    });
+}
+
+
+        document.getElementById('loadVideo').addEventListener('click', async () => {
+            const url = document.getElementById('videoUrl').value.trim();
+            const videoId = getVideoId(url);
+            
+            if (!videoId) {
+                alert('Invalid YouTube URL');
+                return;
+            }
+
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+
+            try {
+                createPlayer(videoId);
+                const response = await fetch('/api/process_video', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ video_id: videoId })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to process video');
+                }
+
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                contentSegments = data.segments;
+                displayContent(contentSegments);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error processing video: ' + error.message);
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
+        });
+
+        // Initialize
+        loadYouTubeAPI();
+
+        // Word meaning hover functionality
+const wordMeaningBox = document.getElementById('wordMeaningBox');
+let hoverTimeout;
+
+document.getElementById('fullContent').addEventListener('mouseover', (event) => {
+    if (event.target.classList.contains('segment')) {
+        clearTimeout(hoverTimeout);
+        
+        const word = event.target.textContent.trim();
+        
+        // Position the box near the mouse
+        const rect = event.target.getBoundingClientRect();
+        wordMeaningBox.style.left = `${rect.right + 10}px`;
+        wordMeaningBox.style.top = `${rect.top}px`;
+        
+        // Keep box within viewport
+        const box = wordMeaningBox.getBoundingClientRect();
+        if (box.right > window.innerWidth) {
+            wordMeaningBox.style.left = `${rect.left - box.width - 10}px`;
+        }
+        if (box.bottom > window.innerHeight) {
+            wordMeaningBox.style.top = `${window.innerHeight - box.height - 10}px`;
+        }
+
+        // Show box with loading state
+        wordMeaningBox.querySelector('.card-body').innerHTML = `
+            <div class="d-flex align-items-center">
+                <div class="spinner-border spinner-border-sm text-primary me-2" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                Loading definition...
+            </div>
+        `;
+        wordMeaningBox.style.display = 'block';
+
+        // Fetch word meaning from Gemini API
+        fetch('/api/get_word_meaning', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ word })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            
+            wordMeaningBox.querySelector('.card-body').innerHTML = `
+                <strong>${word}</strong><br>
+                <div class="mt-1"><strong>Meaning:</strong> ${data.meaning}</div>
+                <div class="mt-2"><strong>Example:</strong> <em>${data.usage}</em></div>
+            `;
+        })
+        .catch(error => {
+            wordMeaningBox.querySelector('.card-body').innerHTML = `
+                <strong>${word}</strong><br>
+                <div class="text-danger mt-1">Error fetching definition</div>
+            `;
+            console.error('Error:', error);
+        });
+    }
+});
+
+document.getElementById('fullContent').addEventListener('mouseout', (event) => {
+    if (event.target.classList.contains('segment') && 
+        !event.relatedTarget?.closest('#wordMeaningBox')) {
+        hoverTimeout = setTimeout(() => {
+            wordMeaningBox.style.display = 'none';
+        }, 300); // Small delay to prevent flickering
+    }
+});
+
+// Keep the box visible when hovering over it
+wordMeaningBox.addEventListener('mouseover', () => {
+    clearTimeout(hoverTimeout);
+});
+
+wordMeaningBox.addEventListener('mouseout', () => {
+    hoverTimeout = setTimeout(() => {
+        wordMeaningBox.style.display = 'none';
+    }, 300);
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+            notesModal = new bootstrap.Modal(document.getElementById('notesModal'));
+        });
+
+        // Add new function for generating notes
+        async function generateNotes() {
+            const fullContent = document.getElementById('fullContent').innerText;
+            if (!fullContent) {
+                alert('Please wait for the content to load completely');
+                return;
+            }
+
+            const notesContent = document.getElementById('notesContent');
+            notesModal.show();
+
+            try {
+                const response = await fetch('/api/generate_notes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: fullContent })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to generate notes');
+                }
+
+                const data = await response.json();
+                
+                notesContent.innerHTML = `
+                    <div class="note-section">
+                        <h6 class="fw-bold">Key Points:</h6>
+                        ${data.key_points}
+                    </div>
+                    <div class="note-section">
+                        <h6 class="fw-bold">Summary:</h6>
+                        ${data.summary}
+                    </div>
+                `;
+            } catch (error) {
+                notesContent.innerHTML = `
+                    <div class="alert alert-danger">
+                        Error generating notes: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Add event listener for generate notes button
+        document.getElementById('generateNotes').addEventListener('click', generateNotes);
+
+        // Add copy notes functionality
+        document.getElementById('copyNotes').addEventListener('click', function() {
+            const notesContent = document.getElementById('notesContent').innerText;
+            navigator.clipboard.writeText(notesContent).then(function() {
+                alert('Notes copied to clipboard!');
+            }).catch(function(err) {
+                alert('Failed to copy notes: ' + err);
+            });
+        });
+
+        // Update content loading to enable generate notes button
+        function displayContent(segments) {
+            // Previous display content code
+            document.getElementById('generateNotes').disabled = false;
+        }
+
+    </script>
+
+<script>
+    // PDF handling functionality
+    const pdfFile = document.getElementById('pdfFile');
+    const uploadPdfBtn = document.getElementById('uploadPdfBtn');
+    const pdfContent = document.getElementById('pdfContent');
+    const pdfLoadingSpinner = document.getElementById('pdfLoadingSpinner');
+    const pdfSearchInput = document.getElementById('pdfSearchInput');
+    const searchPdfBtn = document.getElementById('searchPdfBtn');
+    const pdfSearchResults = document.getElementById('pdfSearchResults');
+
+    let extractedPdfText = '';
+
+    uploadPdfBtn.addEventListener('click', () => {
+        pdfFile.click();
+    });
+
+    pdfFile.addEventListener('change', async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('pdf_file', file);
+
+        pdfLoadingSpinner.style.display = 'block';
+        pdfContent.style.display = 'none';
+
+        try {
+            const response = await fetch('/api/process_pdf', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to process PDF');
+            }
+
+            const data = await response.json();
+            extractedPdfText = data.content;
+            document.querySelector('.pdf-text-content').textContent = extractedPdfText;
+            pdfContent.style.display = 'block';
+        } catch (error) {
+            alert('Error processing PDF: ' + error.message);
+        } finally {
+            pdfLoadingSpinner.style.display = 'none';
+        }
+    });
+
+
+function highlightFullText(searchQuery) {
+    const textContainer = document.querySelector('.pdf-text-content');
+    let content = extractedPdfText;
+    
+    // Escape HTML in the content
+    content = content.replace(/[&<>"']/g, function(m) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return map[m];
+    });
+    
+    // Highlight search terms
+    const searchTerms = searchQuery.toLowerCase().split(' ');
+    searchTerms.forEach(term => {
+        if (term.length > 2) { // Only highlight terms longer than 2 characters
+            const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(${escapedTerm})(?![^<]*>|[^<>]*</)`, 'gi');
+            content = content.replace(regex, '<mark class="bg-warning">$1</mark>');
+        }
+    });
+
+    textContainer.innerHTML = content;
+}
+
+    // Update the search button event listener
+searchPdfBtn.addEventListener('click', async () => {
+    const searchQuery = pdfSearchInput.value.trim();
+    if (!searchQuery) {
+        alert('Please enter a search term');
+        return;
+    }
+
+    try {
+        searchPdfBtn.disabled = true;
+        searchPdfBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Searching...';
+
+        const response = await fetch('/api/process_text_search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content: extractedPdfText,
+                query: searchQuery
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Search failed');
+        }
+
+        const data = await response.json();
+        displayEnhancedResults(data.results);
+        
+        // Highlight search terms in full text
+        highlightFullText(searchQuery);
+
+        // Scroll to first highlight in full text if exists
+        const firstHighlight = document.querySelector('.pdf-text-content mark');
+        if (firstHighlight) {
+            firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    } catch (error) {
+        alert('Error searching text: ' + error.message);
+    } finally {
+        searchPdfBtn.disabled = false;
+        searchPdfBtn.innerHTML = '<i class="bi bi-search"></i> Search';
+    }
+});
+
+function displayEnhancedResults(results) {
+    const pdfSearchResults = document.getElementById('pdfSearchResults');
+    pdfSearchResults.innerHTML = '';
+    
+    if (results.length === 0) {
+        pdfSearchResults.innerHTML = '<div class="alert alert-info">No matching content found</div>';
+        return;
+    }
+
+    results.forEach((result, index) => {
+        // Highlight matching terms in the enhanced paragraph
+        let highlightedParagraph = result.enhanced_paragraph;
+        result.matches.forEach(term => {
+            const regex = new RegExp(term, 'gi');
+            highlightedParagraph = highlightedParagraph.replace(regex, 
+                match => `<mark class="bg-warning">${match}</mark>`
+            );
+        });
+
+        const resultHtml = `
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-3 text-muted">Enhanced Result</h6>
+                    <div class="enhanced-content mb-3">
+                        ${highlightedParagraph}
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#original${index}">
+                        Show Original Sentences
+                    </button>
+                    <div class="collapse mt-3" id="original${index}">
+                        <div class="card card-body bg-light">
+                            <h6 class="mb-2">Original Matching Sentences:</h6>
+                            <ul class="list-unstyled">
+                                ${result.original_sentences.map(sentence => 
+                                    `<li class="mb-2">• ${sentence}</li>`
+                                ).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        pdfSearchResults.innerHTML += resultHtml;
+    });
+
+    // Add summary at the top
+    const summaryHtml = `
+        <div class="alert alert-success mb-3">
+            Found ${results[0].original_sentences.length} matching sentences
+        </div>
+    `;
+    pdfSearchResults.insertAdjacentHTML('afterbegin', summaryHtml);
+}
+
+// Add event listener for Enter key in search input
+pdfSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchPdfBtn.click();
+    }
+});
+
+
+
+    function displaySearchResults(results) {
+    const pdfSearchResults = document.getElementById('pdfSearchResults');
+    pdfSearchResults.innerHTML = '';
+    
+    if (results.length === 0) {
+        pdfSearchResults.innerHTML = '<div class="alert alert-info">No matching paragraphs found</div>';
+        return;
+    }
+
+    // Create results container
+    const resultsHtml = results.map((result, index) => {
+        // Highlight matching terms in the context
+        let highlightedText = result.text;
+        result.matches.forEach(term => {
+            const regex = new RegExp(term, 'gi');
+            highlightedText = highlightedText.replace(regex, 
+                match => `<mark class="bg-warning">${match}</mark>`
+            );
+        });
+
+        return `
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Match ${index + 1}</h6>
+                    <p class="card-text">${highlightedText}</p>
+                    <button class="btn btn-sm btn-outline-primary show-full-paragraph" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#paragraph${index}">
+                        Show Full Paragraph
+                    </button>
+                    <div class="collapse mt-2" id="paragraph${index}">
+                        <div class="card card-body bg-light">
+                            ${result.full_paragraph}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Show total matches and results
+    pdfSearchResults.innerHTML = `
+        <div class="alert alert-success mb-3">
+            Found ${results.length} matching paragraph${results.length > 1 ? 's' : ''}
+        </div>
+        ${resultsHtml}
+    `;
+}
+</script>
+</body>
+</html>
